@@ -1,0 +1,111 @@
+:root {
+  --bg: #0d1321;
+  --panel: #141b2e;
+  --panel-line: #232c44;
+  --amber: #ffb000;
+  --amber-dim: #ffb00033;
+  --teal: #4fb8a6;
+  --teal-dim: #4fb8a626;
+  --danger: #e8654e;
+  --danger-dim: #e8654e26;
+  --text: #edede4;
+  --text-dim: #8a93a6;
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+[data-theme="light"] {
+  --bg: #f3f1ea;
+  --panel: #ffffff;
+  --panel-line: #ddd8c9;
+  --amber: #c47a1f;
+  --amber-dim: #c47a1f22;
+  --teal: #2f8577;
+  --teal-dim: #2f857722;
+  --danger: #c9432f;
+  --danger-dim: #c9432f22;
+  --text: #1c1f26;
+  --text-dim: #6b6f7a;
+}
+
+body {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  background-image:
+    radial-gradient(circle at 15% 10%, #ffb00010 0%, transparent 40%),
+    radial-gradient(circle at 85% 90%, #4fb8a610 0%, transparent 40%);
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--amber-dim);
+  color: var(--text);
+}
+
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* --- Scanning sweep, shown across the input panel while a scan runs --- */
+@keyframes sweep {
+  0% { transform: translateY(-10%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber) 20%, var(--amber) 80%, transparent);
+  box-shadow: 0 0 12px 2px var(--amber);
+  animation: sweep 1.6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+@keyframes chipIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.chip-in {
+  animation: chipIn 0.35s ease backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-line, .fade-up, .chip-in {
+    animation: none !important;
+  }
+}
