@@ -249,7 +249,7 @@ If you find any bugs or have feature requests, please open an issue on GitHub.
 
 # 👨‍💻 Author
 
-**Suman Kumar**
+**Soumya Ranjan Giri**
 
 GitHub:
 https://github.com/suman-cell
